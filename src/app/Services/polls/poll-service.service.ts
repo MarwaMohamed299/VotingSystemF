@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { PollReadDto } from '../Dtos/PollReadDto';
 import { Observable } from 'rxjs';
+import { PollReadDto } from '../../Dtos/PollReadDto';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -14,4 +14,5 @@ export class PollServiceService {
   GetPollById(id: any): Observable<PollReadDto> {
     return this.httpClient.get<PollReadDto>(`${this.Base_URL}/${id}`);
   }
+
 }

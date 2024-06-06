@@ -1,10 +1,11 @@
 <!-- Button trigger modal -->
 <button
+[disabled]="isButtonDisabled"
   type="button"
   class="btn btn-primary"
   data-bs-toggle="modal"
   data-bs-target="#exampleModal"
-  (click)="AddVote(pollId)"
+  (click)="GetPoll(pollId)"
 >
   Add Vote
 </button>
@@ -34,35 +35,42 @@
         <div class="row col-9">
           <h4 class="fw-bold text-center mt-1"></h4>
 
-          <!-- poll.component.html -->
-          <form class="px-4" action="">
+          <form class="px-3" action="">
             <ul class="list-unstyled">
-              <li *ngFor="let question of questions">
-                <h3>{{ question.text }}</h3>
+              <li *ngFor="let question of questions; let i = index">
+                <div class="form-check mb-2">
+                  {{ question.text }}
+                </div>
                 <ul>
                   <li *ngFor="let option of question.options">
-                    {{ option.description }}
-                    <!-- <a href="#" (click)="vote(option.optionId)">{{ option.description }}</a> -->
+                    <div class="form-check mb-2">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        [name]="'question_' + i"
+                        [id]="'radio_' + i + '_' + option.optionId"
+                        [value]="option.optionId"
+                        [(ngModel)]="selectedOptions[i]"
+                      />
+                      <label [for]="'radio_' + i + '_' + option.optionId" class="form-check-label">
+                        {{ option.description }}
+                      </label>
+                    </div>
                   </li>
                 </ul>
               </li>
             </ul>
           </form>
+
         </div>
       </div>
       <div class="modal-footer">
-        <button
-          type="button"
-
-          data-bs-dismiss="modal"
-          class="btn btn-primary"
-        >
+        <button type="button" data-bs-dismiss="modal" class="btn btn-primary" (click)="addVote()">
           Submit
         </button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Close
         </button>
-        <!-- You can add more buttons here if needed -->
       </div>
     </div>
   </div>

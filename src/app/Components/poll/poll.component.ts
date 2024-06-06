@@ -11,10 +11,10 @@ import { VoteAddDto } from '../../Dtos/VoteAddDto';
 @Component({
   selector: 'app-poll',
   standalone: true,
-  imports: [NgFor,FormsModule],
+  imports: [NgFor, FormsModule],
   templateUrl: './poll.component.html',
   styleUrl: './poll.component.css',
-  providers:[CookieService]
+  providers: [CookieService],
 })
 export class PollComponent implements OnInit {
   title: string = '';
@@ -25,11 +25,15 @@ export class PollComponent implements OnInit {
   sessionId: string = '';
   isButtonDisabled: boolean = false;
   selectedOptions: { [key: number]: number } = {};
-  voterId:number | null | undefined;
-  constructor(private pollService: PollServiceService ,private voteService:VotesService, private cookieService:CookieService) {}
+  voterId: number | null | undefined;
+  constructor(
+    private pollService: PollServiceService,
+    private voteService: VotesService,
+    private cookieService: CookieService
+  ) {}
 
   ngOnInit(): void {
-    this.checkSessionId
+    this.checkSessionId();
   }
   checkSessionId(): void {
     this.sessionId = this.cookieService.get('sessionId');
@@ -47,7 +51,6 @@ export class PollComponent implements OnInit {
 
         // this.cookieService.set('sessionId', 'your-session-id-value');
         // this.checkSessionId();
-
       });
     } catch (error) {
       console.error('Error fetching poll details:', error);
@@ -55,26 +58,20 @@ export class PollComponent implements OnInit {
   }
 
   addVote(): void {
-    try{
-      console.log('submit is clicked')
-    const votes: VoteAddDto[] = [];
-    for (const questionId in this.selectedOptions) {
-      const optionId = this.selectedOptions[questionId];
-      if (optionId) {
-        votes.push(new VoteAddDto(this.voterId, optionId, new Date()));
+    try {
+      console.log('submit is clicked');
+      const votes: VoteAddDto[] = [];
+      for (const questionId in this.selectedOptions) {
+        const optionId = this.selectedOptions[questionId];
+        if (optionId) {
+          votes.push(new VoteAddDto(this.voterId, optionId, new Date()));
+        }
       }
-    }
-    this.voteService.addVote(votes).subscribe((data : VoteAddDto)=> {
-      console.log('Votes submitted successfully:', data);
-      // Handle successful vote submission (e.g., show a message, close the modal, etc.)
-    });
-  }
-     catch (error)  {
+      this.voteService.addVote(votes).subscribe((data: VoteAddDto) => {
+        console.log('Votes submitted successfully:', data);
+      });
+    } catch (error) {
       console.error('Error submitting votes:', error);
-      // Handle error (e.g., show an error message)
-    };
+    }
   }
-  }
-
-
-
+}

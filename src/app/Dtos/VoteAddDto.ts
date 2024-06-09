@@ -3,6 +3,6 @@ export class VoteAddDto{
     public voterId:number|null = null,
     public optionId:number,
     public VoteDate:Date,
-    public token : string
+    public token : string | undefined
   ){}
 }

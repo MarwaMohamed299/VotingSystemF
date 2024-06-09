@@ -21,7 +21,7 @@ export class PollComponent implements OnInit {
   questions: QuestionReadDto[] = [];
   startDate!: Date;
   endDate!: Date;
-  pollId = 1;
+  pollId = 3;
   sessionToken: string = '';
   isButtonDisabled: boolean = false;
   selectedOptions: { [key: number]: number } = {};

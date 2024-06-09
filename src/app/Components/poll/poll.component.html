@@ -32,18 +32,18 @@
         ></button>
       </div>
       <div class="modal-body">
-        <div class="row col-9">
+        <div class="row ">
           <h4 class="fw-bold text-center mt-1"></h4>
 
-          <form class="px-3" action="">
-            <ul class="list-unstyled">
+          <form class="m-0 " action="">
+            <ul class="list">
               <li *ngFor="let question of questions; let i = index">
-                <div class="form-check mb-2">
+                <div class="form-check fw-medium mb-3">
                   {{ question.text }}
                 </div>
                 <ul>
                   <li *ngFor="let option of question.options">
-                    <div class="form-check mb-2">
+                    <div class="form-check mb-1 pb-3">
                       <input
                         class="form-check-input"
                         type="radio"
@@ -61,6 +61,7 @@
               </li>
             </ul>
           </form>
+
 
         </div>
       </div>

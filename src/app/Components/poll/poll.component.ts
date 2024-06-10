@@ -1,4 +1,4 @@
-import { NgFor } from '@angular/common';
+import { CommonModule, NgClass, NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { QuestionReadDto } from '../../Dtos/QuestionReadDto';
 import { PollServiceService } from '../../Services/polls/poll-service.service';
@@ -7,11 +7,15 @@ import { FormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { VotesService } from '../../Services/Votes/votes.service';
 import { VoteAddDto } from '../../Dtos/VoteAddDto';
+import { RouterModule, RouterOutlet } from '@angular/router';
+import { BsModalRef, ModalModule } from 'ngx-bootstrap/modal';
+import { Input } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-poll',
   standalone: true,
-  imports: [NgFor, FormsModule],
+  imports: [NgFor, FormsModule,RouterModule,RouterOutlet,ModalModule,NgClass],
   templateUrl: './poll.component.html',
   styleUrl: './poll.component.css',
   providers: [CookieService],
@@ -27,15 +31,17 @@ export class PollComponent implements OnInit {
   selectedOptions: { [key: number]: number } = {};
   voterId: number | null = null;
   token: string = '';
+
   constructor(
     private pollService: PollServiceService,
     private voteService: VotesService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
   ) {}
 
   ngOnInit(): void {
     this.checkSessionToken();
   }
+
   checkSessionToken(): void {
     this.sessionToken = this.cookieService.get('session token');
     this.isButtonDisabled = !!this.sessionToken;
@@ -79,4 +85,5 @@ export class PollComponent implements OnInit {
       console.error('Error submitting votes:', error);
     }
   }
+
 }

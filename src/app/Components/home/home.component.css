@@ -1,0 +1,27 @@
+.img{
+  width: fit-content;
+}
+
+.background-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.background-image img {
+  width: 100%;
+  height: auto;
+  margin-left: 60px;
+}
+.card-body {
+  color: #353434;
+}
+
+.dark-button {
+background-color:#282828;
+border-radius: 7px;
+margin-left:5px;
+margin-bottom: 5px;
+color: white;
+height: 40px;
+
+}

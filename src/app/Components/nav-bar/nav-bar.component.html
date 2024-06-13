@@ -17,13 +17,23 @@
         >
           <ul class="navbar-nav">
             <li class="nav-item d-flex justify content end px-4">
-              <button type="button" class="btn" routerLink="/home" routerLinkActive="active">
+              <button
+                type="button"
+                class="btn"
+                routerLink="/home"
+                routerLinkActive="active"
+              >
                 Home
               </button>
-               </li>
+            </li>
 
             <li class="nav-item d-flex justify content center px-4">
-              <button type="button" class="btn" routerLink="/AddVote" routerLinkActive="active">
+              <button
+                type="button"
+                class="btn"
+                routerLink="/AddVote"
+                routerLinkActive="active"
+              >
                 +Add Vote
               </button>
             </li>
@@ -38,15 +48,14 @@
                 Login
               </button>
             </li>
-            <li class="nav-item d-flex justify-content-end px-4">
-              <button type="button" class="btn" routerLink="User/UserDetails">
-                MyAccount
-              </button>
-            </li>
-
-            <li class="nav-item d-flex justify content end px-4">
-              <button type="button" class="btn" routerLink="/**">Error</button>
-            </li>
+            <nav>
+              <div class="language-dropdown">
+                <select [(ngModel)]="selectedLanguage" (change)="onLanguageChange()">
+                  <option value="en-US">English (US)</option>
+                  <option value="ar-SA">Arabic (Saudi Arabia)</option>
+                </select>
+              </div>
+            </nav>
           </ul>
         </div>
       </div>

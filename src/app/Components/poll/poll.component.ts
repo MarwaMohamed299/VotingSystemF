@@ -15,7 +15,14 @@ import { BrowserModule } from '@angular/platform-browser';
 @Component({
   selector: 'app-poll',
   standalone: true,
-  imports: [NgFor, FormsModule,RouterModule,RouterOutlet,ModalModule,NgClass],
+  imports: [
+    NgFor,
+    FormsModule,
+    RouterModule,
+    RouterOutlet,
+    ModalModule,
+    NgClass,
+  ],
   templateUrl: './poll.component.html',
   styleUrl: './poll.component.css',
   providers: [CookieService],
@@ -25,17 +32,16 @@ export class PollComponent implements OnInit {
   questions: QuestionReadDto[] = [];
   startDate!: Date;
   endDate!: Date;
-  pollId = 3;
+  pollId = 1;
   sessionToken: string = '';
   isButtonDisabled: boolean = false;
   selectedOptions: { [key: number]: number } = {};
   voterId: number | null = null;
   token: string = '';
-
   constructor(
     private pollService: PollServiceService,
     private voteService: VotesService,
-    private cookieService: CookieService,
+    private cookieService: CookieService
   ) {}
 
   ngOnInit(): void {
@@ -54,8 +60,6 @@ export class PollComponent implements OnInit {
         this.questions = data.questions;
         this.startDate = data.startDate;
         this.endDate = data.endDate;
-
-
       });
     } catch (error) {
       console.error('Error fetching poll details:', error);
@@ -73,17 +77,15 @@ export class PollComponent implements OnInit {
           );
         }
       }
-      this.voteService.addVote(votes).subscribe(
-        (response: any) => {
-          console.log('Votes submitted successfully:', response);
-          const receivedToken = response.token;
-          this.cookieService.set('session token', receivedToken);
-          this.token = receivedToken;
-          this.checkSessionToken();
-        })
+      this.voteService.addVote(votes).subscribe((response: any) => {
+        console.log('Votes submitted successfully:', response);
+        const receivedToken = response.token;
+        this.cookieService.set('session token', receivedToken);
+        this.token = receivedToken;
+        this.checkSessionToken();
+      });
     } catch (error) {
       console.error('Error submitting votes:', error);
     }
   }
-
 }

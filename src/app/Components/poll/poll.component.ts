@@ -8,9 +8,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { VotesService } from '../../Services/Votes/votes.service';
 import { VoteAddDto } from '../../Dtos/VoteAddDto';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { BsModalRef, ModalModule } from 'ngx-bootstrap/modal';
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { Input } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-poll',
@@ -22,12 +21,14 @@ import { BrowserModule } from '@angular/platform-browser';
     RouterOutlet,
     ModalModule,
     NgClass,
+    CommonModule,
   ],
   templateUrl: './poll.component.html',
   styleUrl: './poll.component.css',
   providers: [CookieService],
 })
 export class PollComponent implements OnInit {
+  @Input() showModal: boolean = false ;
   title: string = '';
   questions: QuestionReadDto[] = [];
   startDate!: Date;

@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './nav-bar.component.css',
 })
 export class NavBarComponent implements OnInit {
-  selectedLanguage: string = 'en-US';
+  selectedLanguage: string = 'ar-Sa';
   constructor(private languageService: LanguageService) {}
 
   ngOnInit(): void {

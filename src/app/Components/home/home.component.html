@@ -3,7 +3,6 @@
 <div class="container-fluid p-0" style="background-color: #f8f9fa; height: 400px;">
   <div class="jumbotron jumbotron-fluid d-flex flex-column justify-content-end text-center" style="background-image: url('https://verifiedvoting.org/wp-content/uploads/2020/10/VV-Homepage-News6.jpg'); background-size: cover; background-position: center; height: 100%;">
     <div class="container py-5">
-      <!-- Removed the empty h1 -->
     </div>
   </div>
 </div>
@@ -23,7 +22,8 @@
 </div>
 <!-- home.component.html -->
 <div class="container my-5 text-center">
-  <button class="btn btn-primary btn-lg "routerLink="/AddVote" >Start Voting</button>
+<app-poll (click)="openModal()"[showModal]="showPollModal" ></app-poll>
+
 </div>
 
 

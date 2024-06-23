@@ -4,15 +4,15 @@
 <button
 [disabled]="isButtonDisabled"
   type="button"
-  class="btn btn-primary"
+  class="btn btn-primary btn-lg"
   data-bs-toggle="modal"
   data-bs-target="#exampleModal"
   (click)="GetPoll(pollId)"
->Add Vote
+>Start Voting
 </button>
 
 <!-- Modal -->
-<div
+<div *ngIf="showModal"
   class="modal fade"
   id="exampleModal"
   tabindex="-1"
@@ -39,12 +39,12 @@
           <form class="m-0 " action="">
             <ul class="list">
               <li *ngFor="let question of questions; let i = index">
-                <div class="form-check fw-medium mb-3">
+                <div class="form-check fw-medium mb-3 d-flex align-items-center">
                   {{ question.text }}
                 </div>
                 <ul>
                   <li *ngFor="let option of question.options">
-                    <div class="form-check mb-1 pb-3">
+                    <div class="form-check mb-1 pb-3 custom-radio-label">
                       <input
                         class="form-check-input"
                         type="radio"
